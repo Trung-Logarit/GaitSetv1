@@ -1,8 +1,8 @@
 conf = {
     "WORK_PATH": "./work",
-    "CUDA_VISIBLE_DEVICES": "0",
+    "CUDA_VISIBLE_DEVICES": "0,1,2,3",
     "data": {
-        'dataset_path': "/content/GaitSet/data/dataout_realv1",
+        'dataset_path': "/content/dataset/content/GaitSetv1/data_pretr",
         'resolution': '64',
         'dataset': 'CASIA-B',
         # In CASIA-B, data of subject #5 is incomplete.
@@ -20,7 +20,7 @@ conf = {
         'restore_iter': 0,
         'total_iter': 1000,
         'margin': 0.2,
-        'num_workers': 1,
+        'num_workers': 2,
         'frame_num': 30,
         'model_name': 'GaitSet',
     },
