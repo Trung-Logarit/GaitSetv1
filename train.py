@@ -16,8 +16,8 @@ parser.add_argument('--cache', default=True, type=boolean_string,
 opt = parser.parse_args()
 
 m = initialization(conf, train=opt.cache)[0]
-m.load(7300) 
-m.restore_iter = 7300  
+m.load(20500) 
+m.restore_iter = 20500  
 print("Training START")
 m.fit()
 print("Training COMPLETE")
