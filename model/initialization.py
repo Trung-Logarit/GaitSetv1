@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
-# @Author  : admin
-# @Time    : 2018/11/15
 import os
 from copy import deepcopy
-
 import numpy as np
-
-from .utils import load_data
-from .model import Model
+from utils import load_data
+from model import SetNet
 
 
 def initialize_data(config, train=False, test=False):
@@ -44,15 +39,21 @@ def initialize_model(config, train_source, test_source):
         model_config['frame_num'],
     ]))
 
-    m = Model(**model_param)
+    # Khởi tạo mô hình
+    model = SetNet(hidden_dim=model_config['hidden_dim'])
+    model.build((None, model_config['frame_num'], 64, 64, 1))
     print("Model initialization complete.")
-    return m, model_param['save_name']
+    return model, model_param['save_name']
 
 
 def initialization(config, train=False, test=False):
-    print("Initialzing...")
+    print("Initializing...")
     WORK_PATH = config['WORK_PATH']
+    os.makedirs(WORK_PATH, exist_ok=True)
     os.chdir(WORK_PATH)
     os.environ["CUDA_VISIBLE_DEVICES"] = config["CUDA_VISIBLE_DEVICES"]
     train_source, test_source = initialize_data(config, train, test)
     return initialize_model(config, train_source, test_source)
+
+
+print("✅ Initialization module đã sẵn sàng!")
