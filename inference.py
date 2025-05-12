@@ -9,9 +9,10 @@ from tqdm import tqdm
 from model.network.gaitset import SetNet
 from model.utils.data_set import DataSet
 
-# Chỉ chạy trên CPU
-device = torch.device("cpu")
+# Tự động dùng GPU nếu có, ngược lại dùng CPU
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)
+
 
 def build_dataset_from_pretr(root, resolution=64):
     """
