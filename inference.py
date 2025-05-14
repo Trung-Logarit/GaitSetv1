@@ -37,7 +37,7 @@ def extract_embeddings(encoder, dataset, desc="Embedding"):
     feats, views, seq_types, labels = [], [], [], []
     for i in tqdm(range(len(dataset)), desc=desc):
         data, _, view, seq_type, label = dataset[i]
-        seq_arr = data[0]
+        seq_arr = data[0].values if hasattr(data[0], "values") else data[0]
         # Skip empty sequences
         if seq_arr.size == 0:
             continue
